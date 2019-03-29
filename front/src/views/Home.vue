@@ -5,8 +5,8 @@
       <v-container>
         <v-layout row wrap>
           <v-flex xs12>
-            <signIn/>
-            <userList v-if="estaLogeado"/>
+            <userList v-if="isLogged()"/>
+            <signIn v-if="!isLogged()"/>
           </v-flex>
         </v-layout>
       </v-container>
@@ -18,7 +18,6 @@
 import menuBar from "@/components/MenuBar.vue";
 import signIn from "@/components/signIn.vue";
 import userList from "@/components/userList.vue";
-import { estaLogeado } from "@/controllers/login-bool";
 
 export default {
   name: "home",
@@ -27,8 +26,12 @@ export default {
     signIn,
     userList
   },
+  methods: {
+    isLogged(){
+      return localStorage.getItem("loginStatus")
+    }
+  },
   return(){
-    estaLogeado
   }
 };
 </script>
