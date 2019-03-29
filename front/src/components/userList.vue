@@ -18,6 +18,7 @@
 
 <script>
 import axios from "axios";
+import apiConfig from "@/controllers/api-config"
 export default {
   data() {
     return {
@@ -27,7 +28,7 @@ export default {
   methods: {
     async getUsers() {
       await axios
-        .get(`http://localhost:4000/api/users`)
+        .get(`${apiConfig.url}users`)
         .then(response => {
           this.users = response.data.users;
         })

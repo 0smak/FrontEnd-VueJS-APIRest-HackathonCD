@@ -3,6 +3,7 @@ import './plugins/vuetify'
 import App from './App.vue'
 import Axios from 'axios'
 import VueTimeago from 'vue-timeago'
+import router from './router'
 
 Vue.config.productionTip = false
 
@@ -23,6 +24,7 @@ Vue.use(VueTimeago, {
 })
 
 new Vue({
-  render: h => h(App),
+  router,
+  render: h => h(App)
 }).$mount('#app')
 
