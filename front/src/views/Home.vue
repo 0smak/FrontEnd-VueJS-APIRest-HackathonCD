@@ -4,9 +4,15 @@
       <menuBar/>
       <v-container>
         <v-layout row wrap>
-          <v-flex xs12>
+          <v-flex xs4>
+
+          </v-flex>
+          <v-flex xs4>
             <userList v-if="isLogged()"/>
             <signIn v-if="!isLogged()"/>
+          </v-flex>
+          <v-flex xs4>
+
           </v-flex>
         </v-layout>
       </v-container>
