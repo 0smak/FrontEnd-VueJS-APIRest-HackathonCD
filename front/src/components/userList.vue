@@ -8,7 +8,7 @@
         </v-list-tile-avatar>
 
         <v-list-tile-content>
-          <v-list-tile-title>{{user.nombre}} {{user.apellidos}}</v-list-tile-title>
+          <v-list-tile-title>{{user.nombre}} {{user.apellidos}} <span class="pink--text darken-1--text atusername">@{{user.username}}</span></v-list-tile-title>
           <v-list-tile-sub-title >Registrado <timeago :datetime="user.signUpDate" locale="es-ES"></timeago></v-list-tile-sub-title>
         </v-list-tile-content>
       </v-list-tile>
@@ -46,3 +46,10 @@ export default {
   }
 };
 </script>
+
+<style>
+  span.atusername{
+    font-size: 14px;
+  }
+</style>
+
