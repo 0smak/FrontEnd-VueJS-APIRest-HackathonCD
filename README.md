@@ -34,4 +34,6 @@
 
 ## Preview
 
-![](https://media.giphy.com/media/APb8K8IhJrCXCArd8X/giphy.gif)
+![](https://i.imgur.com/IGTYhna.png)
+![](https://i.imgur.com/04ozSxC.png)
+![](https://i.imgur.com/naRA3EV.png)
