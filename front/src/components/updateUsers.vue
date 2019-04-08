@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="900">
+  <v-dialog v-model="dialog" max-width="450">
     <template v-slot:activator="{ on }">
       <v-list-tile
         v-on="on"
@@ -23,7 +23,7 @@
         >Editar usuario: {{username}}</v-card-title>
         <v-container>
           <v-layout row wrap>
-            <v-flex xs6>
+            <v-flex xs12>
               <v-card-text>
                 <v-text-field
                   value="this.user.username"
@@ -54,7 +54,7 @@
                   v-on:keyup.enter="validate"
                   required
                 ></v-text-field>
-                <!--
+                
                           <v-text-field
                             v-model="password"
                             :append-icon="show1 ? 'visibility' : 'visibility_off'"
@@ -67,12 +67,10 @@
                             label="Contraseña"
                             @click:append="show1 = !show1"
                           ></v-text-field>
-                -->
+                
               </v-card-text>
             </v-flex>
-            <v-flex xs6>
-              
-            </v-flex>
+            <v-flex xs12></v-flex>
           </v-layout>
         </v-container>
 
@@ -114,8 +112,7 @@ export default {
       }
     };
   },
-  components: {
-  },
+  components: {},
   methods: {
     async getUser() {
       var uname = this.usernameLogged();
@@ -129,6 +126,7 @@ export default {
           this.nombre = this.usuarioEdit.nombre;
           this.apellidos = this.usuarioEdit.apellidos;
           this.id = this.usuarioEdit._id;
+          this.password = this.usuarioEdit.password
         })
         .catch(e => {
           // eslint-disable-next-line no-console
@@ -142,16 +140,23 @@ export default {
       return localStorage.getItem("username");
     },
     async updateUser(id) {
+      if (this.password == "" || this.password == null){
+        this.password == this.usuarioEdit.password
+      } 
       await axios
         .put(`${apiConfig.url}user/${id}`, {
           username: this.username,
           apellidos: this.apellidos,
-          nombre: this.nombre
+          nombre: this.nombre,
+          password: this.password
         })
         .then(res => {
           // eslint-disable-next-line no-console
           console.log(res);
           this.dialog = false;
+          localStorage.removeItem("username");
+          localStorage.setItem("username", this.username);
+          window.location = "/";
         })
         .catch(e => {
           //eslint-disable-next-line no-console
@@ -166,7 +171,7 @@ export default {
     }
   },
   created() {
-    this.getUser()
+    this.getUser();
   }
 };
 </script>

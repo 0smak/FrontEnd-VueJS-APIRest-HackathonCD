@@ -43,6 +43,7 @@
               <v-list>
                 
                 <updateUsers/>                
+                <deleteUser/>                
 
                 <v-list-tile @click="logoutGO()" @mouseover="mOver2=true" @mouseout="mOver2=false" :class="{'pink--text': mOver2}">
                   <v-list-tile-action>
@@ -65,6 +66,7 @@
 import axios from "axios";
 import apiConfig from "@/controllers/api-config";
 import updateUsers from "@/components/updateUsers.vue";
+import deleteUser from "@/components/deleteUser.vue";
 
 export default {
   data(){
@@ -82,7 +84,8 @@ export default {
     }
   },
   components: {
-    updateUsers
+    updateUsers,
+    deleteUser
   },
   methods: {
     isLogged() {
