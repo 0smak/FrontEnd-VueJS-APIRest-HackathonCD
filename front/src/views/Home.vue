@@ -3,16 +3,16 @@
     <v-content>
       <menuBar/>
       <v-container>
-        <v-layout xs12 row wrap>
-          <v-flex md4>
+        <v-layout row wrap>
+          <v-flex xs12 md3 lg4>
 
           </v-flex>
-          <v-flex xs12 md4>
+          <v-flex xs12 md7 lg4>
             <userList v-if="isLogged()"/>
             <signIn v-if="!isLogged()"/>
           </v-flex>
-          <v-flex xs12 md4>
-
+          <v-flex xs12 md2 lg4>
+              
           </v-flex>
         </v-layout>
       </v-container>

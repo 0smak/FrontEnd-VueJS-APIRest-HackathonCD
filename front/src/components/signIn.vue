@@ -9,7 +9,8 @@
             :value="true"
             type="warning"
           >Inicia sesión para ver la lista de usuarios.</v-alert>
-          <v-icon color="pink darken-1" size=256px>sentiment_very_dissatisfied</v-icon><br>
+          <v-icon color="pink darken-1" size="256px">sentiment_very_dissatisfied</v-icon>
+          <br>
           <v-btn outline color="pink darken-1" dark v-on="on">Iniciar sesión</v-btn>
         </template>
 
@@ -78,31 +79,30 @@ export default {
   }),
 
   methods: {
-    login() {
-      let userExist = false;
-      for (let i = 0; i < this.users.length; i++) {
-        if (this.users[i].username == this.username) {
-          userExist = !userExist;
-          if (this.users[i].password == this.password) {
+    async login() {
+      axios
+        .post(`${apiConfig.url}login`, {
+          username: this.username,
+          password: this.password
+        })
+        .then(response => {
+          if (response.data.valid) {
             localStorage.setItem("loginStatus", true);
-            localStorage.setItem("username", this.users[i].username);
+            localStorage.setItem("username", this.username);
             this.dialog = false;
             window.location = "/";
-          } else {
+          }else if(!response.data.valid){
             localStorage.setItem("loginStatus", false);
             localStorage.removeItem("username");
             this.snackbar = false;
             this.password = "";
           }
-        }
-      }
-      if (!userExist) {
-        localStorage.setItem("loginStatus", false);
-        localStorage.removeItem("username");
-        this.snackbar = false;
-        this.username = "";
-        this.password = "";
-      }
+        })
+        .catch(e => {
+          // eslint-disable-next-line no-console
+          console.log("error: " + e);
+        });
+
     },
     validate() {
       if (this.$refs.form.validate()) {
